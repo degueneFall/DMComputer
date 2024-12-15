@@ -80,14 +80,24 @@ class ApiService {
     }
   }
   // Méthode pour récupérer les produits favoris
-  // Méthode pour récupérer les produits favoris (localement gérés)
-  // Modifier la méthode de récupération des produits favoris
-  // Méthode pour récupérer les produits favoris (localement gérés)
-  static Future<List<Product>> fetchFavoriteProducts(List<int> favoriteProductIds) async {
-    // Exemple d'appel API ou logique locale
-    List<Product> allProducts = await fetchProducts(); // Tous les produits
-    return allProducts.where((product) => favoriteProductIds.contains(product.id)).toList();
+
+  static Future<List<Product>> fetchFavoriteProducts() async {
+    final url = '${baseUrl}products?is_favorite=true'; // Utiliser un paramètre "is_favorite"
+    final response = await http.get(
+      Uri.parse(url),
+      headers: {
+        'Authorization': 'Basic ' + base64Encode(utf8.encode('$consumerKey:$consumerSecret')),
+      },
+    );
+
+    if (response.statusCode == 200) {
+      final List<dynamic> data = json.decode(response.body);
+      return data.map((product) => Product.fromJson(product)).toList();
+    } else {
+      throw Exception('Échec de la récupération des produits favoris');
+    }
   }
+
 
   // Méthode pour ajouter un produit aux favoris
   static Future<void> addToFavorites(int productId) async {

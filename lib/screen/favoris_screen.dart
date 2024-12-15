@@ -1,38 +1,38 @@
-import 'package:dmc_computer/product.dart';
-import 'package:dmc_computer/screen/produitDetails_screen.dart';
 import 'package:flutter/material.dart';
-import '../api_service.dart'; // Service API
+import '../api_service.dart';
 import 'menu.dart';
+import '../product.dart';
+import 'produitDetails_screen.dart';
 
 class FavorisScreen extends StatefulWidget {
-  const FavorisScreen({super.key});
+  const FavorisScreen({Key? key}) : super(key: key);
 
   @override
   State<FavorisScreen> createState() => _FavorisScreenState();
 }
 
 class _FavorisScreenState extends State<FavorisScreen> {
-  late Future<List<Product>> _favorisProducts;
+  late Future<List<Product>> _allProducts;
+  List<Product> _favoris = []; // Liste locale pour les favoris
 
   @override
   void initState() {
     super.initState();
-    // Supposons que vous avez une méthode pour obtenir les IDs favoris
-    List<int> favoriteProductIds = _getFavoriteProductIds();
-    _favorisProducts = ApiService.fetchFavoriteProducts(favoriteProductIds);
+    _allProducts = ApiService.fetchProducts();
   }
 
-  // Simule une liste d'identifiants favoris (à adapter)
-  List<int> _getFavoriteProductIds() {
-    return [1, 2, 5]; // Exemple : IDs des produits marqués comme favoris
+  /// Ajoute un produit aux favoris
+  void _addToFavorites(Product product) {
+    setState(() {
+      _favoris.add(product);
+    });
   }
 
-  // Fonction pour retirer un produit des favoris
+  /// Retire un produit des favoris
   void _removeFromFavorites(Product product) {
     setState(() {
-      product.isFavorite = false; // Mise à jour locale
+      _favoris.removeWhere((p) => p.id == product.id);
     });
-    ApiService.removeFromFavorites(product.id); // Appel à l'API pour mettre à jour
   }
 
   @override
@@ -42,7 +42,9 @@ class _FavorisScreenState extends State<FavorisScreen> {
         leading: IconButton(
           onPressed: () {
             Navigator.pushReplacement(
-                context, MaterialPageRoute(builder: (context) => MenuScreen()));
+              context,
+              MaterialPageRoute(builder: (context) => MenuScreen()),
+            );
           },
           icon: Icon(Icons.arrow_back, size: 30),
         ),
@@ -55,25 +57,28 @@ class _FavorisScreenState extends State<FavorisScreen> {
         iconTheme: IconThemeData(color: Colors.white),
       ),
       body: FutureBuilder<List<Product>>(
-        future: _favorisProducts,
+        future: _allProducts,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
-            return Center(child: Text('Erreur: ${snapshot.error}'));
+            return Center(child: Text('Erreur : ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Center(
               child: Text(
-                'Aucun produit favori',
+                'Aucun produit disponible',
                 style: TextStyle(fontSize: 20, color: Colors.grey),
               ),
             );
           } else {
-            final favoris = snapshot.data!;
+            final products = snapshot.data!;
             return GridView.count(
               crossAxisCount: 2,
               childAspectRatio: calculateChildAspectRatio(2),
-              children: favoris.map((product) => _buildProductCard(product)).toList(),
+              children: products.map((product) {
+                final isFavoris = _favoris.contains(product);
+                return _buildProductCard(product, isFavoris);
+              }).toList(),
             );
           }
         },
@@ -81,7 +86,7 @@ class _FavorisScreenState extends State<FavorisScreen> {
     );
   }
 
-  Widget _buildProductCard(Product product) {
+  Widget _buildProductCard(Product product, bool isFavoris) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -102,25 +107,25 @@ class _FavorisScreenState extends State<FavorisScreen> {
                   product.imageUrl,
                   width: double.infinity,
                   height: 100,
+                  fit: BoxFit.cover,
                 ),
                 Positioned(
                   top: 10,
                   right: 10,
                   child: IconButton(
                     icon: Icon(
-                      product.isFavorite ? Icons.favorite : Icons.favorite_border,
+                      isFavoris ? Icons.favorite : Icons.favorite_border,
                       color: Colors.green,
                       size: 30,
                     ),
                     onPressed: () {
                       setState(() {
-                        product.isFavorite = !product.isFavorite;
+                        if (isFavoris) {
+                          _removeFromFavorites(product);
+                        } else {
+                          _addToFavorites(product);
+                        }
                       });
-                      if (!product.isFavorite) {
-                        _removeFromFavorites(product);
-                      } else {
-                        ApiService.addToFavorites(product.id);
-                      }
                     },
                   ),
                 ),
@@ -132,8 +137,10 @@ class _FavorisScreenState extends State<FavorisScreen> {
               children: [
                 Text(product.name, style: TextStyle(fontSize: 16)),
                 SizedBox(height: 5),
-                Text('${product.price} FCFA',
-                    style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold)),
+                Text(
+                  '${product.price} FCFA',
+                  style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),
+                ),
               ],
             ),
           ],
@@ -142,7 +149,7 @@ class _FavorisScreenState extends State<FavorisScreen> {
     );
   }
 
-  // Calcule l'aspect pour GridView
+  /// Calcule l'aspect ratio pour les cartes
   double calculateChildAspectRatio(int crossAxisCount) {
     return (MediaQuery.of(context).size.width / crossAxisCount) /
         (MediaQuery.of(context).size.height / 4);
