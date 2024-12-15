@@ -14,7 +14,7 @@ class AproposScreen extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back, size: 30),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: Text(
           'À propos',
@@ -156,7 +156,7 @@ class AproposScreen extends StatelessWidget {
               // Copyright and legal text (optional)
               Center(
                 child: Text(
-                  '© 2024 Aurore. Tous droits réservés.',
+                  '© 2024 DMComputer. Tous droits réservés.',
                   style: TextStyle(
                     fontSize: 14,
                     fontStyle: FontStyle.italic,

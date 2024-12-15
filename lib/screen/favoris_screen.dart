@@ -48,7 +48,7 @@ class _FavorisScreenState extends State<FavorisScreen> {
           },
           icon: Icon(Icons.arrow_back, size: 30),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: Text(
           'Mes Favoris',
@@ -115,7 +115,7 @@ class _FavorisScreenState extends State<FavorisScreen> {
                   child: IconButton(
                     icon: Icon(
                       isFavoris ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.green,
+                      color: Color(0xFF006400),
                       size: 30,
                     ),
                     onPressed: () {

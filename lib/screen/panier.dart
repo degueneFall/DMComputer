@@ -24,7 +24,7 @@ class Panier extends StatelessWidget {
           },
           icon: const Icon(Icons.arrow_back, color: Colors.white),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: const Text(
           'Mon Panier',

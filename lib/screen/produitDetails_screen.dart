@@ -31,7 +31,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Détails du Produit'),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         actions: [
           IconButton(
             icon: const Icon(Icons.brightness_6),
@@ -146,7 +146,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           SnackBar(content: Text('$name a été ajouté au panier')),
                         );
                       },
-                      style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                      style: ElevatedButton.styleFrom(backgroundColor: Color(0xFF006400)),
                       child: const Text('Ajouter au panier'),
                     ),
                   ],

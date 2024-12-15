@@ -69,7 +69,7 @@ class _ScreenconnexionState extends State<Screenconnexion> {
           },
           icon: Icon(Icons.arrow_back, size: 30),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: Text(
           'Connexion',
@@ -84,7 +84,7 @@ class _ScreenconnexionState extends State<Screenconnexion> {
             height: MediaQuery.of(context).size.height * 0.8,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.green, Colors.white], // Dégradé vert en haut et blanc en bas
+                colors: [Color(0xFF006400), Colors.white], // Dégradé vert en haut et blanc en bas
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -107,7 +107,7 @@ class _ScreenconnexionState extends State<Screenconnexion> {
                         Text(
                           "Bienvenue",
                           style: TextStyle(
-                            color: Colors.green,
+                            color: Color(0xFF006400),
                             fontWeight: FontWeight.bold,
                             fontSize: 30,
                           ),
@@ -121,7 +121,7 @@ class _ScreenconnexionState extends State<Screenconnexion> {
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
                             labelText: "Email",
-                            prefixIcon: Icon(Icons.email, color: Colors.green),
+                            prefixIcon: Icon(Icons.email, color: Color(0xFF006400)),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
                             ),
@@ -137,14 +137,14 @@ class _ScreenconnexionState extends State<Screenconnexion> {
                           obscureText: _obscureText,
                           decoration: InputDecoration(
                             labelText: "Mot de passe",
-                            prefixIcon: Icon(Icons.lock, color: Colors.green),
+                            prefixIcon: Icon(Icons.lock, color: Color(0xFF006400)),
                             suffixIcon: IconButton(
                               onPressed: () {
                                 setState(() {
                                   _obscureText = !_obscureText;
                                 });
                               },
-                              icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Colors.green),
+                              icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Color(0xFF006400)),
                             ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -158,7 +158,7 @@ class _ScreenconnexionState extends State<Screenconnexion> {
 
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.green,
+                            backgroundColor: Color(0xFF006400),
                             padding: EdgeInsets.symmetric(horizontal: 100, vertical: 20),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
@@ -182,7 +182,7 @@ class _ScreenconnexionState extends State<Screenconnexion> {
                                 Navigator.pushReplacement(
                                     context, MaterialPageRoute(builder: (context) => Pageinscription()));
                               },
-                              child: Text("S'Inscrire", style: TextStyle(color: Colors.green)),
+                              child: Text("S'Inscrire", style: TextStyle(color: Color(0xFF006400))),
                             ),
                           ],
                         ),

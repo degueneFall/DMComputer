@@ -14,7 +14,7 @@ class ConfidentialiteScreen extends StatelessWidget {
           },
           icon: Icon(Icons.arrow_back, size: 30),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: Text(
           'Confidentialité',

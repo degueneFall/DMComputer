@@ -59,7 +59,7 @@ class _MenuScreenState extends State<MenuScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: Text('DMComputer.sn', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
         actions: [
@@ -155,7 +155,7 @@ class _MenuScreenState extends State<MenuScreen> {
                                   duration: Duration(milliseconds: 300),
                                   child: Chip(
                                     label: Text(category.name),
-                                    backgroundColor: _selectedCategoryId == category.id ? Colors.green : Colors.grey,
+                                    backgroundColor: _selectedCategoryId == category.id ? Color(0xFF006400) : Colors.grey.shade100,
                                   ),
                                 ),
                               ),
@@ -218,7 +218,7 @@ class _MenuScreenState extends State<MenuScreen> {
             Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Screenconnexion()));
           }
         },
-        selectedItemColor: Colors.green,
+        selectedItemColor: Color(0xFF006400),
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
@@ -231,7 +231,7 @@ class _MenuScreenState extends State<MenuScreen> {
             label: 'Recherche',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_bag),
             label: 'Panier',
           ),
           BottomNavigationBarItem(
@@ -287,7 +287,7 @@ class _MenuScreenState extends State<MenuScreen> {
                   child: IconButton(
                     icon: Icon(
                       product.isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.green,
+                      color: Color(0xFF006400),
                       size: 30,
                     ),
                     onPressed: () {

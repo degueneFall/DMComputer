@@ -86,7 +86,7 @@ class _PageinscriptionState extends State<Pageinscription> {
           },
           icon: Icon(Icons.arrow_back, size: 30),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: Color(0xFF006400),
         centerTitle: true,
         title: Text(
           'Inscription',
@@ -101,7 +101,7 @@ class _PageinscriptionState extends State<Pageinscription> {
             height: MediaQuery.of(context).size.height * 0.9,
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.green, Colors.white], // Dégradé vert en haut et blanc en bas
+                colors: [Color(0xFF006400), Colors.white], // Dégradé vert en haut et blanc en bas
                 begin: Alignment.topCenter,
                 end: Alignment.bottomCenter,
               ),
@@ -133,12 +133,11 @@ class _PageinscriptionState extends State<Pageinscription> {
                           SizedBox(height: 10),
                           Text("Remplissez les informations pour vous inscrire", style: TextStyle(color: Colors.grey)),
                           SizedBox(height: 15),
-
                           TextField(
-                            controller: _nomController,
+                            controller: _prenomController,
                             decoration: InputDecoration(
-                              labelText: "Nom",
-                              prefixIcon: Icon(Icons.person, color: Colors.green),
+                              labelText: "Prénom",
+                              prefixIcon: Icon(Icons.person, color: Color(0xFF006400)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -150,10 +149,10 @@ class _PageinscriptionState extends State<Pageinscription> {
                           SizedBox(height: 10),
 
                           TextField(
-                            controller: _prenomController,
+                            controller: _nomController,
                             decoration: InputDecoration(
-                              labelText: "Prénom",
-                              prefixIcon: Icon(Icons.person, color: Colors.green),
+                              labelText: "Nom",
+                              prefixIcon: Icon(Icons.person_outlined, color: Color(0xFF006400)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -169,7 +168,7 @@ class _PageinscriptionState extends State<Pageinscription> {
                             keyboardType: TextInputType.emailAddress,
                             decoration: InputDecoration(
                               labelText: "Email",
-                              prefixIcon: Icon(Icons.email, color: Colors.green),
+                              prefixIcon: Icon(Icons.email, color: Color(0xFF006400)),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
                               ),
@@ -185,14 +184,14 @@ class _PageinscriptionState extends State<Pageinscription> {
                             obscureText: _obscureText,
                             decoration: InputDecoration(
                               labelText: "Mot de passe",
-                              prefixIcon: Icon(Icons.lock, color: Colors.green),
+                              prefixIcon: Icon(Icons.lock, color: Color(0xFF006400)),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
                                     _obscureText = !_obscureText;
                                   });
                                 },
-                                icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Colors.green),
+                                icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Color(0xFF006400)),
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -209,14 +208,14 @@ class _PageinscriptionState extends State<Pageinscription> {
                             obscureText: _obscureText,
                             decoration: InputDecoration(
                               labelText: "Confirmer le mot de passe",
-                              prefixIcon: Icon(Icons.lock, color: Colors.green),
+                              prefixIcon: Icon(Icons.lock, color: Color(0xFF006400)),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   setState(() {
                                     _obscureText = !_obscureText;
                                   });
                                 },
-                                icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Colors.green),
+                                icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Color(0xFF006400)),
                               ),
                               border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -230,7 +229,7 @@ class _PageinscriptionState extends State<Pageinscription> {
 
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.green,
+                              backgroundColor: Color(0xFF006400),
                               padding: EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8),
@@ -254,7 +253,7 @@ class _PageinscriptionState extends State<Pageinscription> {
                                   Navigator.pushReplacement(
                                       context, MaterialPageRoute(builder: (context) => Screenconnexion()));
                                 },
-                                child: Text("Se connecter", style: TextStyle(color: Colors.green)),
+                                child: Text("Se connecter", style: TextStyle(color: Color(0xFF006400))),
                               ),
                             ],
                           ),

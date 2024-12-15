@@ -2,6 +2,7 @@ import 'package:dmc_computer/screen/apropos_screen.dart';
 import 'package:dmc_computer/screen/confidentialite_screen.dart';
 import 'package:dmc_computer/screen/favoris_screen.dart';
 import 'package:dmc_computer/screen/recherche.screen.dart';
+import 'package:dmc_computer/screen/screenconnexion.dart';
 import 'package:flutter/material.dart';
 
 import 'menu.dart';
@@ -79,7 +80,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
               leading: Icon(Icons.person,),  // Autre icône personnalisée
               title: Text("Mon compte", style: TextStyle(color: Colors.black)),
               onTap: () {
-                // Action à effectuer lors du clic sur cet élément
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Screenconnexion()));
               },
             ),
             ListTile(
@@ -113,7 +114,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ],
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
+                    backgroundColor: Color(0xFF006400),
                     padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 12.0),
                   ),
                 )
